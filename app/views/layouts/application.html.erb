@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Board2</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    
+    <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+    <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+    
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js" integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
+    
+  </head>
+
+  <body>
+    
+   <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <!--<a class="navbar-brand" href="#">Navbar</a>-->
+    <%= link_to '홈으로가기', root_path %>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+          
+        <% if model_signed_in? %>
+          <li class="nav-item active">
+            <p class=""><%= current_model.email %></p>
+            <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+          </li>
+          <li class="nav-item">
+            <%= link_to '로그아웃', destroy_model_session_path, method: 'delete' %>
+            <!--<a class="nav-link" href="#">Features</a>-->
+          </li>
+        <% else %>
+          <li class="nav-item active">
+            <%= link_to '회원가입', new_model_registration_path %>
+            <!--<a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>-->
+          </li>
+          <li class="nav-item">
+            <%= link_to '로그인', new_model_session_path %>
+            <!--<a class="nav-link" href="#">Features</a>-->
+          </li>
+        <% end %>
+        
+        
+      </ul>
+    </div>
+    </nav>
+    
+    <div class="container">
+      
+      
+      <%= yield %>
+    </div>
+    
+  </body>
+</html>
